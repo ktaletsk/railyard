@@ -1,0 +1,16 @@
+name: scala
+dependencies:
+  env:
+    - SCALA_VERSION: 2.12.8
+  scripts:
+    - one: |
+        curl -Lo coursier https://git.io/coursier-cli && \
+        chmod +x coursier && \
+        ./coursier bootstrap \
+            -r jitpack \
+            -i user -I user:sh.almond:scala-kernel-api_$SCALA_VERSION:$ALMOND_VERSION \
+            sh.almond:scala-kernel_$SCALA_VERSION:$ALMOND_VERSION \
+            -o almond && \
+        ./almond --install && \
+        rm almond coursier
+
