@@ -1,7 +1,5 @@
 name: 
 dependencies:
-  env:
-    - 
   apt:
     - gcc
   conda:
@@ -12,9 +10,3 @@ dependencies:
     - xframe: 0.2* 
   pip:
     - sos-xeus-cling: 0.1.0
-  labextensions:
-    - 
-  scripts:
-    - 
-  addfiles:
-    - 

@@ -8,10 +8,8 @@ dependencies:
     - openjdk-8-jdk
     - openjdk-11-jdk
     - maven=3.6.0-1~18.04.1
-  conda:
   pip: 
     - sos-java: 0.1.0
-  labextensions:
   scripts:
     - java: |
         curl -L https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3.0.zip > ijava-kernel.zip && \
@@ -21,4 +19,3 @@ dependencies:
         cd .. && \
         rm ijava-kernel.zip && \
         rm -rf ijava-kernel
-  addfiles:

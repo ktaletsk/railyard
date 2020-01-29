@@ -1,6 +1,5 @@
 name: R
 dependencies:
-  env:
   apt:
     - fonts-dejavu
     - gfortran
@@ -38,11 +37,3 @@ dependencies:
     - r-rglwidget: 0.2.1
     - r-stringi: 1.4.3
     - sos-r: 0.19*
-  pip:
-    - 
-  labextensions:
-    - 
-  scripts:
-    - 
-  addfiles:
-    - 
