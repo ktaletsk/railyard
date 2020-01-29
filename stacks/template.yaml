@@ -1,0 +1,16 @@
+name: 
+dependencies:
+  env:
+    - 
+  apt:
+    - 
+  conda:
+    - 
+  pip:
+    - 
+  labextensions:
+    - 
+  scripts:
+    - 
+  addfiles:
+    - 

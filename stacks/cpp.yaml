@@ -1,0 +1,20 @@
+name: 
+dependencies:
+  env:
+    - 
+  apt:
+    - gcc
+  conda:
+    - xeus-cling: 0.7* 
+    - xwidgets: 0.19* 
+    - xtensor: 0.20* 
+    - xtl: 0.6* 
+    - xframe: 0.2* 
+  pip:
+    - sos-xeus-cling: 0.1.0
+  labextensions:
+    - 
+  scripts:
+    - 
+  addfiles:
+    - 

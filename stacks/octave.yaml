@@ -1,0 +1,14 @@
+name: Octave
+dependencies:
+  env:
+  apt:
+    - octave
+  conda:
+    - octave_kernel
+  pip:
+    - sos-matlab: 0.18.3
+  labextensions:
+  scripts:
+    - octave_kernel_install: |
+        python -m octave_kernel install --user
+  addfiles:

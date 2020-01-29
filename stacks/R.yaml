@@ -1,0 +1,48 @@
+name: R
+dependencies:
+  env:
+  apt:
+    - fonts-dejavu
+    - gfortran
+    - gcc
+  conda:
+    - rpy2: 2.9*
+    - r-base: 3.6*
+    - r-irkernel: 1.0.2
+    - r-plyr: 1.8.4
+    - r-devtools: 2.2.1
+    - r-tidyverse: 1.2.1
+    - r-shiny: 1.4.0
+    - r-rmarkdown: 1.16
+    - r-forecast: 8.9
+    - r-rsqlite: 2.1.2
+    - r-reshape2: 1.4.3
+    - r-caret: "6.0_84"
+    - r-rcurl: "1.95_4.12"
+    - r-crayon: 1.3.4
+    - r-randomforest: "4.6_14"
+    - r-htmltools: 0.4.0
+    - r-sparklyr: 1.0.4
+    - r-htmlwidgets: 1.5.1
+    - r-hexbin: 1.27.3
+    - r-feather: 0.3.5
+    - r-highcharter: 0.7.0
+    - r-dygraphs: 1.1.1.6
+    - r-visnetwork: 2.0.8
+    - r-d3heatmap: 0.6.1.2
+    - r-plotly: 4.9.1
+    - r-rbokeh
+    - r-networkd3: 0.4
+    - r-dt: "0.10"
+    - r-threejs: 0.3.1
+    - r-rglwidget: 0.2.1
+    - r-stringi: 1.4.3
+    - sos-r: 0.19*
+  pip:
+    - 
+  labextensions:
+    - 
+  scripts:
+    - 
+  addfiles:
+    - 

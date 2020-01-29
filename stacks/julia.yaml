@@ -1,0 +1,22 @@
+name: julia
+dependencies:
+  env:
+    - JULIA_DEPOT_PATH: /opt/julia
+    - JULIA_PKGDIR: /opt/julia
+    - JULIA_VERSION: 1.1.1
+  apt:
+  conda: 
+    - sos-julia: 0.18*
+  pip:
+  labextensions:
+  scripts:
+    - julia: |
+        julia -e 'import Pkg; Pkg.update()' && \
+        julia -e "using Pkg; \
+                  pkg\"add Feather DataFrames NamedArrays RDatasets IJulia InstantiateFromURL HDF5 https://github.com/probcomp/Gen\";\
+                  pkg\"precompile\"" && \
+        # move kernelspec out of home \
+        mv $HOME/.local/share/jupyter/kernels/julia-1.0/kernel.json $CONDA_DIR/share/jupyter/kernels/julia-1.0/kernel.json && \
+        rm -rf $HOME/.local && \
+        fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
+  addfiles:

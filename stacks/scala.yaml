@@ -1,9 +1,16 @@
-name: scala
+name: Scala
 dependencies:
   env:
     - SCALA_VERSION: 2.12.8
+    - ALMOND_VERSION: 0.6.0
+  apt:
+    - scala
+  conda:
+  pip:
+    - sos-scala: 0.18.0
+  labextensions:
   scripts:
-    - one: |
+    - scala: |
         curl -Lo coursier https://git.io/coursier-cli && \
         chmod +x coursier && \
         ./coursier bootstrap \
@@ -13,4 +20,4 @@ dependencies:
             -o almond && \
         ./almond --install && \
         rm almond coursier
-
+  addfiles:
