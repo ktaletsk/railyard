@@ -7,7 +7,6 @@ dependencies:
     - scala
   pip:
     - sos-scala: 0.18.0
-  labextensions:
   scripts:
     - scala: |
         curl -Lo coursier https://git.io/coursier-cli && \
