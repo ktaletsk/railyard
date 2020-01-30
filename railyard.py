@@ -5,10 +5,25 @@ import copy
 import hashlib
 import docker
 
+def sort_dep_list(dep_list):
+    return sorted(dep_list, key=lambda k: next(iter(k)) if type(k)==dict else k)
+
 def get_hash(package):
     p = copy.deepcopy(package)
+    
+    # Name of the base stack does not matter for hash
     p.pop('name')
-    return hashlib.sha256(repr(sorted(package.items())).encode()).hexdigest()
+    
+    # Sort everything by package name or put into set to make hash stable under permutations
+    p['dependencies']['env'] = sort_dep_list(p['dependencies']['env'])
+    p['dependencies']['apt'] = sort_dep_list(p['dependencies']['apt'])
+    p['dependencies']['conda'] = sort_dep_list(p['dependencies']['conda'])
+    p['dependencies']['pip'] = sort_dep_list(p['dependencies']['pip'])
+    p['dependencies']['labextensions'] = sort_dep_list(p['dependencies']['labextensions'])
+    p['dependencies']['scripts'] = set([next(iter(s.values())) for s in p['dependencies']['scripts']])
+    p['dependencies']['addfiles'] = sort_dep_list(p['dependencies']['addfiles'])
+    
+    return hashlib.sha256(repr(sorted(p.items())).encode()).hexdigest()
 
 def dockerfile_block(name, lines):
     offset = ' ' * (len(name) + 1)
@@ -16,8 +31,6 @@ def dockerfile_block(name, lines):
 
 def dockerfile_comment(comment):
     return '# ' + comment + '\n'
-
-# filename = 'big.yaml'
 
 base_stack = 'base.yaml'
 additional_stacks = ['Python-datascience.yaml', 'Python-dataviz.yaml', 'R.yaml', 'octave.yaml', 'java.yaml', 'julia.yaml', 'cpp.yaml', 'scala.yaml']
