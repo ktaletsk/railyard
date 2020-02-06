@@ -1,0 +1,4 @@
+name: tensorflow
+dependencies:
+  pip:
+    - tensorflow: 2.1.0

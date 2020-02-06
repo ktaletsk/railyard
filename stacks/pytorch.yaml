@@ -1,0 +1,10 @@
+name: pytorch
+dependencies:
+  conda-channels:
+    - pytorch
+  conda:
+    - pytorch: 1.4.0
+    - torchvision: 0.5.0
+    - cudatoolkit: 10.1
+  pip:
+    - kornia: 0.2.0

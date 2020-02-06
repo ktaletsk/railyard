@@ -1,7 +1,6 @@
 name: Python-Dataviz
 dependencies:
   conda:
-    - ipywidgets: 7.5*
     - gnuplot: 5*
     - bokeh: 1*
     - holoviews: 1.12*
@@ -10,6 +9,8 @@ dependencies:
     - voila: 0.1.20*
     - itkwidgets: 0.22*
     - plotly: 4.3*
+    - seaborn: 0.9*
+    - vincent: 0.4*
     - altair: 3.2*
     - vega_datasets: 0.7*
     - bqplot: 0.11*

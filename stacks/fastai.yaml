@@ -1,0 +1,7 @@
+name: fastai
+dependencies:
+  conda-channels:
+    - pytorch
+    - fastai
+  conda:
+    - fastai: "1.0.60"
