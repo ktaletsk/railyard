@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                withEnv(["HOME=${env.WORKSPACE}"]) {
+                withEnv(["HOME=${env.WORKSPACE}", "PATH=$PATH:${env.WORKSPACE}/.local/bin"]) {
                     sh 'echo $HOME'
                     sh 'echo $PATH'
                     sh "pip install -r requirements.txt --user"
