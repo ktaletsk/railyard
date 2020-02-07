@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'python:3.7' } }
+    agent { 
+        docker { 
+            image 'python:3.7' 
+            args '--network=host'    
+        } 
+    }
     stages {
         stage('build') {
             steps {
