@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                    sh 'pip install --user .'
+                    sh 'pip install .'
                     sh 'railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
                     sh 'ls -la temp'
             }
