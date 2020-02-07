@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip install .'
-                sh 'railyard'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'pip install . --user'
+                    sh 'railyard'
+                }
+                
             }
         }
     }
