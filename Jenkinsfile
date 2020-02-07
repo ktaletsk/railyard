@@ -8,9 +8,14 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                    sh 'pip install .'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'echo $HOME'
+                    sh 'echo $PATH'
+                    sh "pip install -r requirements.txt --user"
+                    sh 'pip install . --user'
                     sh 'railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
                     sh 'ls -la temp'
+                }
             }
         }
     }
