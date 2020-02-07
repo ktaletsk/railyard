@@ -1,8 +1,8 @@
 """Main module."""
 
 import tempfile
-from assembler import readStacks, assembleStack
-import builder
+from railyard.assembler import readStacks, assembleStack
+import railyard.builder as builder
 import time
 import os
 

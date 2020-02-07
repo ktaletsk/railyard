@@ -1,7 +1,7 @@
 """Console script for railyard."""
 import sys
 import click
-import railyard
+import railyard.railyard as ry
 
 @click.group()
 def main():
@@ -14,7 +14,7 @@ def main():
 def build(base_stack, additional_stacks):
     print(f'Base stack: {base_stack}')
     print(f'Additional stacks: {additional_stacks}')
-    railyard.test(base_stack, additional_stacks)
+    ry.test(base_stack, additional_stacks)
 
 @main.command()
 @click.argument('base_stack', nargs=1)
@@ -24,7 +24,7 @@ def assemble(base_stack, additional_stacks, path):
     print(f'Base stack: {base_stack}')
     print(f'Additional stacks: {additional_stacks}')
     print(f'Path: {path}')
-    railyard.assemble(base_stack, additional_stacks, path)
+    ry.assemble(base_stack, additional_stacks, path)
 
 
 if __name__ == "__main__":

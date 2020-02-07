@@ -31,7 +31,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Modular Jupyter Ncontainer builds from Yaml definitions",
+    description="Modular Jupyter Notebook container builds from Yaml definitions",
     entry_points={
         'console_scripts': [
             'railyard=railyard.cli:main',
@@ -42,7 +42,7 @@ setup(
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='railyard',
-    name='railyard',
+    name='railyard-builder',
     packages=find_packages(include=['railyard', 'railyard.*']),
     setup_requires=setup_requirements,
     test_suite='tests',

@@ -2,7 +2,7 @@ import os
 import yaml
 import copy
 import hashlib
-import tools
+import railyard.tools as tools
 
 def sort_dep_list(dep_list):
     return sorted(dep_list, key=lambda k: next(iter(k)) if type(k)==dict else k)
