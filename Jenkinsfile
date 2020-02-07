@@ -9,9 +9,9 @@ pipeline {
         stage('build') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'python --version'
-                    sh 'ls -la'
-                    sh 'pip install --user -r requirements.txt'
+                    sh 'pip install --user .'
+                    sh 'railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
+                    sh 'ls -la temp'
                 }
             }
         }
