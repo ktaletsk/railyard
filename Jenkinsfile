@@ -1,12 +1,12 @@
 pipeline {
-    agent { 
-        docker { 
-            image 'python:3.7' 
-            args '--network=host'    
-        } 
-    }
     stages {
         stage('assemble') {
+            agent { 
+                docker { 
+                    image 'python:3.7' 
+                    args '--network=host'    
+                } 
+            }
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'echo $HOME'
@@ -19,6 +19,9 @@ pipeline {
             }
         }
         stage('build') {
+            agent { 
+                node
+            }
             steps {
                 script {
                     dir('temp') {
