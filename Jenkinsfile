@@ -32,18 +32,14 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('manifests') {
-                        def containerVariants = findFiles(glob: '**/Dockerfile')
-                        containerVariants.each {
-                            File file = new File(env.WORKSPACE, it.path);
-                            String parentPath = file.getParent();
-                            println """${it.name} ${it.path} ${it.directory} ${it.length} ${it.lastModified} ${parentPath}"""
-                        }
-                        // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
-                        //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
-                        //     image.push()
-                        // }
+                    def containerVariants = sh(returnStdout: true, script: 'ls -d manifests/*').trim().split(System.getProperty("line.separator"))
+                    containerVariants.each {
+                        println """${it}"""
                     }
+                    // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+                    //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
+                    //     image.push()
+                    // }
                 }
             }
         }
