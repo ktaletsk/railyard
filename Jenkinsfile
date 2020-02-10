@@ -3,7 +3,13 @@ pipeline {
         label 'master'
     }
     stages {
-        stage('assemble') {
+        stage('Checkout source code') {
+            steps {
+                cleanWs()
+                checkout scm
+            }
+        }
+        stage('Assemble') {
             agent { 
                 docker { 
                     image 'python:3.7' 
@@ -12,7 +18,6 @@ pipeline {
                 } 
             }
             steps {
-                checkout scm
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'echo $HOME'
                     sh 'echo $PATH'
@@ -24,7 +29,7 @@ pipeline {
                 }
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 script {
                     dir('temp') {
