@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     dir('manifests') {
-                        def containerVariants = findFiles(glob: '**/Dockerfile')
+                        def containerVariants = findFiles(glob: '**')
                         echo """${containerVariants[0].name} ${containerVariants[0].path} ${containerVariants[0].directory} ${containerVariants[0].length} ${containerVariants[0].lastModified}"""
                         echo """${containerVariants[1].name} ${containerVariants[1].path} ${containerVariants[1].directory} ${containerVariants[1].length} ${containerVariants[1].lastModified}"""
                         // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
