@@ -35,8 +35,8 @@ pipeline {
                     dir('manifests') {
                         def containerVariants = findFiles(glob: '**/Dockerfile')
                         containerVariants.each {
-                            File file = new File(it.path);
-                            String parentPath = file.getAbsoluteFile().getParent();
+                            File file = new File(env.WORKSPACE, it.path);
+                            String parentPath = file.getParent();
                             println """${it.name} ${it.path} ${it.directory} ${it.length} ${it.lastModified} ${parentPath}"""
                         }
                         // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
