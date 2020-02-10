@@ -18,13 +18,16 @@ pipeline {
                     sh '$HOME/.local/bin/railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
                     sh 'ls -la temp'
                     sh 'cat temp/Dockerfile'
+                    stash name: "dockerfiles-stash", includes: "temp/*"
                 }
             }
         }
         stage('build') {
             steps {
+                unstash "dockerfiles-stash"
+                sh "ls -la ${pwd()}/dockerfiles-stash"
                 script {
-                    dir('temp') {
+                    dir('dockerfiles-stash') {
                         sh 'ls -la'
                         docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
                             def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--no-cache ./')
