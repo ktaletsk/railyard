@@ -35,12 +35,12 @@ pipeline {
                     script {
                         def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
                         containerVariants.each {
-                            println """${it}"""
+                            println """Building container tag: ${it}"""
+                            docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+                                def image = docker.build("""ktaletsk/polus-notebook:${it}""", '--network=host --no-cache ./')
+                                image.push()
+                            }
                         }
-                        // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
-                        //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
-                        //     image.push()
-                        // }
                     }
                 }
             }
