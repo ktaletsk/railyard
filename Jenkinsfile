@@ -33,9 +33,10 @@ pipeline {
             steps {
                 script {
                     dir('manifests') {
-                        def containerVariants = findFiles(glob: '**')
-                        echo """${containerVariants[0].name} ${containerVariants[0].path} ${containerVariants[0].directory} ${containerVariants[0].length} ${containerVariants[0].lastModified}"""
-                        echo """${containerVariants[1].name} ${containerVariants[1].path} ${containerVariants[1].directory} ${containerVariants[1].length} ${containerVariants[1].lastModified}"""
+                        def containerVariants = findFiles(glob: '**/Dockerfile')
+                        containerVariants.each {
+                            println """${it.name} ${it.path} ${it.directory} ${it.length} ${it.lastModified}"""
+                        }
                         // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
                         //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
                         //     image.push()
