@@ -9,6 +9,7 @@ pipeline {
                 } 
             }
             steps {
+                checkout scm
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'echo $HOME'
                     sh 'echo $PATH'
