@@ -6,7 +6,7 @@ pipeline {
         } 
     }
     stages {
-        stage('build') {
+        stage('assemble') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'echo $HOME'
@@ -15,6 +15,15 @@ pipeline {
                     sh 'pip install . --user'
                     sh '$HOME/.local/bin/railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
                     sh 'ls -la temp'
+                }
+            }
+        }
+        stage('build') {
+            steps {
+                script {
+                    dir('temp') {
+                        sh 'ls -la'
+                    }
                 }
             }
         }
