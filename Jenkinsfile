@@ -20,9 +20,7 @@ pipeline {
             }
         }
         stage('build') {
-            agent { 
-                node
-            }
+            agent node
             steps {
                 script {
                     dir('temp') {
