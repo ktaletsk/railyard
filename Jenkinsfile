@@ -23,6 +23,10 @@ pipeline {
                 script {
                     dir('temp') {
                         sh 'ls -la'
+                        docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+                            def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--no-cache ./')
+                            image.push()
+                        }
                     }
                 }
             }
