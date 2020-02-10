@@ -1,11 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        label 'whatever'
+    }
     stages {
         stage('assemble') {
             agent { 
                 docker { 
                     image 'python:3.7' 
-                    args '--network=host'    
+                    args '--network=host'
+                    reuseNode true   
                 } 
             }
             steps {
