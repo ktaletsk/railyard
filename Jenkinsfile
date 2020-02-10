@@ -35,7 +35,9 @@ pipeline {
                     dir('manifests') {
                         def containerVariants = findFiles(glob: '**/Dockerfile')
                         containerVariants.each {
-                            println """${it.name} ${it.path} ${it.directory} ${it.length} ${it.lastModified}"""
+                            File file = new File(it.path);
+                            String parentPath = file.getAbsoluteFile().getParent();
+                            println """${it.name} ${it.path} ${it.directory} ${it.length} ${it.lastModified} ${parentPath}"""
                         }
                         // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
                         //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
