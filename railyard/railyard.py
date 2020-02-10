@@ -10,7 +10,9 @@ def assemble(base_stack, additional_stacks, path):
     s = readStacks(base_stack, additional_stacks)
     if not os.path.exists(path):
         os.mkdir(path)
-    assembleStack(s, path)
+    if not os.path.exists(os.path.join(path, s['package_hash'])):
+        os.mkdir(os.path.join(path, s['package_hash']))
+    assembleStack(s, os.path.join(path, s['package_hash']))
 
 
 def test(base_stack, additional_stack):
