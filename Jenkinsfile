@@ -16,6 +16,7 @@ pipeline {
                     sh 'pip install . --user'
                     sh '$HOME/.local/bin/railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml temp'
                     sh 'ls -la temp'
+                    sh 'cat temp/Dockerfile'
                 }
             }
         }
