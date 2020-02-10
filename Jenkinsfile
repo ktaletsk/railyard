@@ -31,16 +31,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script {
-                    def containerVariants = sh(returnStdout: true, script: 'ls -d manifests/*').trim().split(System.getProperty("line.separator"))
-                    containerVariants.each {
-                        println """${it}"""
-                    }
-                    // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
-                    //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
-                    //     image.push()
-                    // }
+                def containerVariants = sh(returnStdout: true, script: 'ls -d manifests/*').trim().split(System.getProperty("line.separator"))
+                containerVariants.each {
+                    println """${it}"""
                 }
+                // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+                //     def image = docker.build('ktaletsk/polus-notebook:jenkins-test', '--network=host --no-cache ./')
+                //     image.push()
+                // }
             }
         }
     }
