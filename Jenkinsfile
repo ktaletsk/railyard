@@ -31,9 +31,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                def branches = [:] 
                 dir('manifests') {
                     script {
+                        def branches = [:] 
                         def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
                         containerVariants.each {
                             dir("""${it}""") {
