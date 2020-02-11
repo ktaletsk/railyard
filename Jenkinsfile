@@ -30,25 +30,28 @@ pipeline {
             }
         }
         stage('Build') {
-            def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
-            println """${containerVariants}"""
-
-            // steps {
-            //     dir('manifests') {
-            //         script {
-            //             def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
-            //             containerVariants.each {
-            //                 dir("""${it}""") {
-            //                     println """Building container tag: ${it}"""
-            //                     docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
-            //                         def image = docker.build("""ktaletsk/polus-notebook:${it}""", '--network=host --no-cache ./')
-            //                         image.push()
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+            steps {
+                def branches = [:] 
+                dir('manifests') {
+                    script {
+                        def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
+                        containerVariants.each {
+                            dir("""${it}""") {
+                                println """Building container tag: ${it}"""
+                                // docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+                                //     def image = docker.build("""ktaletsk/polus-notebook:${it}""", '--network=host --no-cache ./')
+                                //     image.push()
+                                // }
+                                stage ("branch_${it}"){ 
+                                    branches["branch_${it}"] = {
+                                        sh """echo 'Parallel building tag: ${it}' """ 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
