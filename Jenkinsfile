@@ -49,6 +49,7 @@ pipeline {
                                 }
                             }
                         }
+                        parallel branches
                     }
                 }
             }
