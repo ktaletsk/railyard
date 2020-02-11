@@ -30,22 +30,25 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                dir('manifests') {
-                    script {
-                        def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
-                        containerVariants.each {
-                            dir("""${it}""") {
-                                println """Building container tag: ${it}"""
-                                docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
-                                    def image = docker.build("""ktaletsk/polus-notebook:${it}""", '--network=host --no-cache ./')
-                                    image.push()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
+            println """${containerVariants}"""
+
+            // steps {
+            //     dir('manifests') {
+            //         script {
+            //             def containerVariants = sh(returnStdout: true, script: 'ls -d *').trim().split(System.getProperty("line.separator"))
+            //             containerVariants.each {
+            //                 dir("""${it}""") {
+            //                     println """Building container tag: ${it}"""
+            //                     docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub') {
+            //                         def image = docker.build("""ktaletsk/polus-notebook:${it}""", '--network=host --no-cache ./')
+            //                         image.push()
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
