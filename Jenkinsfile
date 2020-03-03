@@ -25,7 +25,7 @@ pipeline {
                     sh 'pip install . --user'
                     sh '$HOME/.local/bin/railyard assemble stacks/base.yaml stacks/R.yaml stacks/java.yaml manifests'
                     sh '$HOME/.local/bin/railyard assemble stacks/base.yaml stacks/Python-datascience.yaml stacks/Python-dataviz.yaml manifests'
-                    sh 'ls -la manifests/'
+                    sh 'ls -la manifests/*'
                 }
             }
         }

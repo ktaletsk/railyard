@@ -1,4 +1,0 @@
-name: fastai
-dependencies:
-  pip:
-    - fastai: "1.0.60"
